@@ -17,12 +17,12 @@ int main(){
 			if(strlen(line[a])<strlen(line[b])){
 				copy(line[a],temp);
 				copy(line[b],line[a]);
-				copy(temp, line[a]);
+				copy(temp, line[b]);
 			}
 		}
 	}
 
-	for(int i=0; i<5; i++)
+	for(int i=0; i<MAX_LINES; i++)
 		printf("%s\n", line[i]);
 
 
