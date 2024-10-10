@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
 	char buf;
 	int row =0, col = 0;
 	while(read(fd, &buf,  1) >0){
-			if(row > MAX_ROWS)
+			if(row >= MAX_ROWS)
 				break;
 			if(buf == '\n'){
 				savedText[row][col] = '\0';
@@ -37,8 +37,8 @@ int main(int argc, char *argv[]){
 		}
 	
 	printf("File read success\n");
-	printf("Total line : %d\n",row+1);
-	printf("You can choose 1~%d Line\n",row+1);
+	printf("Total line : %d\n",row);
+	printf("You can choose 1~%d Line\n",row);
     printf("Pls 'Enter' the line to select : ");
 	char input[21];
 	
@@ -68,8 +68,10 @@ int main(int argc, char *argv[]){
 			char *token = strtok(input, ",");
 			while(token != NULL){
 				int line;
-				if(sscanf(token, "%d", &line) ==1)
-					printf("%s\n", line, savedText[line -1]);
+				if(sscanf(token, "%d", &line) ==1){
+					if(line >=1 && line <=row)
+						printf("%s\n", savedText[line -1]);
+				}
 				token = strtok(NULL,",");
 			}
 		}
