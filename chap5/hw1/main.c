@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <string.h>
+
 #define MAX_ROWS 10
 #define MAX_COLS 100
 int main(int argc, char *argv[]){
@@ -63,16 +65,23 @@ int main(int argc, char *argv[]){
 				printf("%s\n", savedText[i]);
 		}
 		else{
-
-			// n,.....,m 
-			char *token = strtok(input, ",");
-			while(token != NULL){
-				int line;
-				if(sscanf(token, "%d", &line) ==1){
-					if(line >=1 && line <=row)
-						printf("%s\n", savedText[line -1]);
+			// n / n,.....,m 
+			int lineNum[MAX_ROWS];
+			int count=0;
+			
+			char *token = strtok(input,",");
+			while (token != NULL){
+				int line = atoi(token);
+				if(line >=1 && line<=row){
+					lineNum[count++] = line;
 				}
 				token = strtok(NULL,",");
+			}
+			if(count ==1)
+				printf("%s\n", savedText[lineNum[0]-1]);
+			else{
+			for(int i=0; i<count; i++)
+				printf("%s\n", savedText[lineNum[i]-1]);
 			}
 		}
 	}
