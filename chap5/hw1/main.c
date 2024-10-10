@@ -77,8 +77,10 @@ int main(int argc, char *argv[]){
 				}
 				token = strtok(NULL,",");
 			}
+			//n
 			if(count ==1)
 				printf("%s\n", savedText[lineNum[0]-1]);
+			//n,...,m
 			else{
 			for(int i=0; i<count; i++)
 				printf("%s\n", savedText[lineNum[i]-1]);
