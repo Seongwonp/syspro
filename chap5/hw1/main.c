@@ -7,24 +7,41 @@
 int main(int argc, char *argv[]){
 	char savedText[MAX_ROWS][MAX_COLS];
 	int fd;
-	if((fd = open(argv[1], O_RDONLY)) == -1)
-		printf("File Open Error\n");
+	if(argc<2){
+		fprintf(stderr,"How to use: %s file\n", argv[0]);
+		exit(1);
+	}
+
+	if((fd = open(argv[1], O_RDONLY)) == -1){
+		perror(argv[1]);
+		exit(2);
+	}
+		
 	
 	char buf;
 	int row =0, col = 0;
-	while(Read(fd, &buf,  1) >0){
-			Read(fd,&buf,1);
-			saveText[row][col]= buf;
-			col++;
-			if(buf == '\n')
+	while(read(fd, &buf,  1) >0){
+			if(row > MAX_ROWS)
+				break;
+			if(buf == '\n'){
+				savedText[row][col] = '\0';
 				row++;
+				col = 0;
+			}
+			else{
+				savedText[row][col] = buf;
+				col++;
+				if(col >=MAX_COLS)
+					col = MAX_COLS-1;
+			}
 		}
-
+	
 	printf("File read success\n");
 	printf("Total line : %d\n",row+1);
 	printf("You can choose 1~%d Line\n",row+1);
     printf("Pls 'Enter' the line to select : ");
 	
 	
-
+	close(fd);
+	exit(0);
 
