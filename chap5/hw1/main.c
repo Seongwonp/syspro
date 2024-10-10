@@ -40,8 +40,43 @@ int main(int argc, char *argv[]){
 	printf("Total line : %d\n",row+1);
 	printf("You can choose 1~%d Line\n",row+1);
     printf("Pls 'Enter' the line to select : ");
+	char input[21];
 	
+	scanf("%20s", input);
+	//all text
+	if(strcmp(input,"*") == 0){
+		for (int i =0; i<row; i++)
+			printf("%s\n", savedText[i]);
+	}
 	
+	else{
+	
+		//n-m used sscanf
+		if(strchr(input,'-')!=NULL){
+			int start,end;
+			sscanf(input,"%d-%d", &start,&end);
+			if(start <1 || end<start || end >row){
+				printf("Invalid range : %d-%d\n", start, end);
+				exit(2);
+			}
+			for(int i = start-1; i<=end-1 && i<row; i++)
+				printf("%s\n", savedText[i]);
+		}
+		else{
+
+			// n,.....,m 
+			char *token = strtok(input, ",");
+			while(token != NULL){
+				int line;
+				if(sscanf(token, "%d", &line) ==1)
+					printf("%s\n", line, savedText[line -1]);
+				token = strtok(NULL,",");
+			}
+		}
+	}
+
+
 	close(fd);
 	exit(0);
+}
 
