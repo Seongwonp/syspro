@@ -11,7 +11,7 @@
 void printStat(char*, struct stat*, int, int);
 char *formatTime(time_t);
 char *perm(mode_t);
-
+// ls -l ls-i ls -s
 int main(int argc, char **argv)
 {
     DIR *dp;
@@ -63,6 +63,7 @@ void printStat(char *pathname, struct stat *st, int print_long, int print_inode)
         printf("%c%s ", (S_ISDIR(st->st_mode) ? 'd' : '-'), perm(st->st_mode));
         printf("%3d ", st->st_nlink);
         printf("%s %s ", getpwuid(st->st_uid)->pw_name, getgrgid(st->st_gid)->gr_name);
+		printf("%lu ", st->st_ino);
         printf("%s ", formatTime(st->st_mtime));
     }
 }
