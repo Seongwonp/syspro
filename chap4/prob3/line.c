@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 #define MAXLINE 80
 
 int main(int argc, char *argv[]){
@@ -7,7 +9,7 @@ int main(int argc, char *argv[]){
 	char buffer[MAXLINE];
 
 	if(argc !=2){
-		fprinf(stderr,"How to use : line FileName\n");
+		fprintf(stderr,"How to use : line FileName\n");
 		exit(1);
 	}
 
@@ -18,7 +20,7 @@ int main(int argc, char *argv[]){
 
 	while(fgets(buffer,MAXLINE, fp) != NULL){
 		line++;
-		printf("3d%s",line,buffer);
+		printf("%3d %s",line,buffer);
 	}
 	exit(0);
 }

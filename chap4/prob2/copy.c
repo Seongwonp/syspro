@@ -8,7 +8,7 @@ int main(int argc, char *argv[]){
 	}
 
 	fp1 = fopen(argv[1],"r");
-	if(fp1 == NULLf){
+	if(fp1 == NULL){
 		fprintf(stderr,"File %s Open Error\n",argv[1]);
 		return 2;
 	}
