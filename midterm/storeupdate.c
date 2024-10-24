@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
 			fseek(fp, (id-ID)*sizeof(rec), SEEK_SET);
 			if((fread(&rec, sizeof(rec),1,fp)>0) && (rec.id !=0) && (rec.stock !=0)){
 				printf("'%12s' (%d) has been sold..\n",rec.name,rec.stock);
-				rec.stock = rec.stock-1;
+				rec.stock--;
 				fseek(fp,-sizeof(rec), SEEK_CUR);
 				fwrite(&rec, sizeof(rec),1,fp);
 
