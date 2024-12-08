@@ -12,9 +12,7 @@
 int main(int argc, char* argv[]) {
     int pid1, pid2, fd[2];
     char str[MAXLINE];
-    char *args1[MAXLINE], *args2[MAXLINE];
     char *command1, *command2;
-    int i, j;
 
     if (argc > 0) {
         if (argc == 1) {
