@@ -18,10 +18,10 @@ int main(){
         child_pid = getpid();
 	printf("Send: [%d] ", child_pid);
 	sprintf(massage, "Hello from PID %d\n",child_pid);
+        printf("%s", massage);
 	length = strlen(massage)+1;
 	write(fd[1],massage,length);
 	
-	printf("%s", massage);
         close(fd[1]);
         return 0;
     }
