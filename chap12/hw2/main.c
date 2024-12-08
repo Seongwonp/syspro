@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <ctype.h>
-#include <sys/wait.h>
 #define MAXLINE 100
 
 int main(int argc, char* argv[]){
